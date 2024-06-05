@@ -36,3 +36,7 @@ Feature: Adding employee using different techniques
         | Nonny     | Dwayne     | Cartey   |
         | Nickey    | NS         | Minky    |
         | Cole      | Sphe       | Gambs    |
+
+      @excel
+    Scenario: Adding employees from excel file
+      When user adds multiple employees from excel and validate them

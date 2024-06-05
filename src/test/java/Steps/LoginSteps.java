@@ -3,6 +3,7 @@ package Steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.CommonMethods;
@@ -39,7 +40,13 @@ public class LoginSteps extends CommonMethods {
     }
     @Then("user is successfully logged in")
     public void user_is_successfully_logged_in() {
-        System.out.println("Test passed");
+        //here we are checking if element
+        Assert.assertTrue(dashboardPage.welcomeMessage.isDisplayed());
+       // System.out.println("Test Passed");
+        String expectedUrl ="http://hrm.syntaxtechs.net/humanresources/symfony/web/index.php/dashboard";
+        String actualUrl = driver.getCurrentUrl();
+        Assert.assertEquals(expectedUrl,actualUrl);
+
 
     }
 }

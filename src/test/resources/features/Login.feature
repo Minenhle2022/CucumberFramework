@@ -1,6 +1,6 @@
 Feature: Login related scenarios
 
-  @smoke @sprint1 @Mini @firstFrame
+  @LoginMe
   Scenario: Valid admin login
 
     When user enters valid username and password

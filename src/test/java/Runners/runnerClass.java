@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         //here in glue,
         glue = "Steps",
         dryRun = false,
-        tags = "@datatable"
+        tags = "@LoginMe"
 
 )
 public class runnerClass {
