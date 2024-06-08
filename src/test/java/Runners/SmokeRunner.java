@@ -1,5 +1,4 @@
 package Runners;
-
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
@@ -12,12 +11,9 @@ import org.junit.runner.RunWith;
         glue = "Steps",
         dryRun = false,
         tags = "@LoginMe",
-        //pretty keywords prints all steps in console which we execute
-        //to generate the report, I need to mention type of the report and location
-        plugin = {"pretty", "html:target/cucumber.html"}
+        plugin = {"pretty", "html:target/cucumber.html","json:target/cucumber.json"}
 
 )
-public class runnerClass {
 
-
+public class SmokeRunner {
 }

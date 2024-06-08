@@ -1,5 +1,8 @@
 package utils;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,23 +12,28 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.channels.ScatteringByteChannel;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 
-public class CommonMethods  extends PageInitializer{
+public class CommonMethods  extends PageInitializer {
 
-    public static  WebDriver driver;
+    public static WebDriver driver;
+
     public static void openBrowserAndLaunchApplication() throws IOException {
 
-        switch (ConfigReader.read("browser")){
+        switch (ConfigReader.read("browser")) {
             case "Chrome":
-                driver=new ChromeDriver();
+                driver = new ChromeDriver();
                 break;
             case "FireFox":
-                driver=new FirefoxDriver();
+                driver = new FirefoxDriver();
                 break;
             case "Edge":
-                driver=new EdgeDriver();
+                driver = new EdgeDriver();
                 break;
             default:
                 throw new RuntimeException("Invalid Browser Name");
@@ -37,27 +45,28 @@ public class CommonMethods  extends PageInitializer{
         initializePageObjects();
     }
 
-    public static void closeBrowser(){
-        if(driver!=null){
+    public static void closeBrowser() {
+        if (driver != null) {
             driver.quit();
         }
     }
 
-    public  static  void selectFromDropDown(WebElement dropDown,int index){
-        Select sel=new Select(dropDown);
+    public static void selectFromDropDown(WebElement dropDown, int index) {
+        Select sel = new Select(dropDown);
         sel.selectByIndex(index);
     }
-    public  static  void selectFromDropDown(WebElement dropDown,String visibleText){
-        Select sel=new Select(dropDown);
+
+    public static void selectFromDropDown(WebElement dropDown, String visibleText) {
+        Select sel = new Select(dropDown);
         sel.selectByVisibleText(visibleText);
     }
 
-    public  static  void selectFromDropDown(String value, WebElement dropDown){
-        Select sel=new Select(dropDown);
+    public static void selectFromDropDown(String value, WebElement dropDown) {
+        Select sel = new Select(dropDown);
         sel.selectByValue(value);
     }
 
-    public static void sendText(String text,WebElement element){
+    public static void sendText(String text, WebElement element) {
 //        clear the text box
         element.clear();
 //        send the text to element
@@ -65,26 +74,48 @@ public class CommonMethods  extends PageInitializer{
     }
 
 
-    public  static  WebDriverWait getwait(){
-        WebDriverWait wait= new WebDriverWait(driver,Duration.ofSeconds(20));
-        return  wait;
+    public static WebDriverWait getwait() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        return wait;
     }
 
-    public static void waitForElementToBeClickable(WebElement element){
+    public static void waitForElementToBeClickable(WebElement element) {
         getwait().until(ExpectedConditions.elementToBeClickable(element));
 
     }
 
-    public static void click(WebElement element){
+    public static void click(WebElement element) {
         waitForElementToBeClickable(element);
         element.click();
     }
+
+    public static byte[] takeScreenshot(String fileName) {
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        byte[] picBtyte = ts.getScreenshotAs(OutputType.BYTES);
+        File sourceFile = ts.getScreenshotAs(OutputType.FILE);
+
+        try {
+            FileUtils.copyFile(sourceFile, new File
+                    (Constants.SCREENSHOT_FILEPATH + fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return picBtyte;
+    }
+
+    public static String getTimeStamp(String pattern){
+        Date date = new Date();
+        //yyyy-MM-dd-hh-mm-ss
+
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        return sdf.format(date);
+    }
+
 
     //take screenshot
     //checkboxes
     //radiobuttons
     //jsclick
-
 
 
 }

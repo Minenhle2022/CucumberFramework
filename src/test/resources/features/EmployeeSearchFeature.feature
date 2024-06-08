@@ -7,13 +7,13 @@ Feature: Employee search related scenarios
     When user clicks on PIM option
     And user clicks on employee list option
 
-  @smoke @Nqobile @Sprint2
+  @smoke @Nqobile @Sprint2 @regression
   Scenario: Search employee by id
     When user enters valid employee id
     And user clicks on search button
     Then user see the employee information
 
-  @regression @Samke @Sprint2
+  @regression @Samke @Sprint2 @regression
   Scenario: Search employee by name
     When user enters valid employee name
     And user clicks on search button

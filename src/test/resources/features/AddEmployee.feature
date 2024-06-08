@@ -7,19 +7,20 @@ Feature: Adding employee using different techniques
     When user clicks on PIM option
     And user clicks on Add Employee option
 
-  @addemployee
+  @addemployee @regression
   Scenario: Adding an employee in HRMS system
 
     When user enters firstname and middlename and lastname
     And user clicks on save button
     Then employee added successfully
 
-    @cucumber
+    @cucumber @regression
     Scenario: Adding employee from feature file
       When user enters "Samkelisiwe", "Sam" and "Gambushe"
       And user clicks on save button
       Then employee added successfully
-    @ddt
+
+    @ddt @regression
     Scenario Outline:: Adding employee using data driven testing
       When user enters "<firstname>" and "<middlename>" and "<lastname>".
       And user clicks on save button
@@ -29,7 +30,9 @@ Feature: Adding employee using different techniques
         |Nqobile    |MN          |Ndlovu    |
         |Tumelo     |TS          |Sikhakhne |
         |Azania     | AS         | Sthole   |
-      @datatable
+
+
+      @datatable @regression
     Scenario: Adding multiple  employees using data table
       When user enters firstname and middlename and lastname from data table and verify
         | firstname | middlename | lastname |
@@ -37,6 +40,6 @@ Feature: Adding employee using different techniques
         | Nickey    | NS         | Minky    |
         | Cole      | Sphe       | Gambs    |
 
-      @excel
+      @excel @regression
     Scenario: Adding employees from excel file
       When user adds multiple employees from excel and validate them

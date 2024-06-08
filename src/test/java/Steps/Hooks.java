@@ -3,6 +3,7 @@ package Steps;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import utils.CommonMethods;
 
 import java.io.IOException;
@@ -15,7 +16,14 @@ public class Hooks extends CommonMethods {
     }
     //post condition
     @After
-    public void end(){
+    public void end(Scenario scenario) {
+
+        //getName is the
+        if (scenario.isFailed()) {
+            takeScreenshot("failed/" + scenario.getName());
+        } else {
+            takeScreenshot("passed/" + scenario.getName());
+    }
         closeBrowser();
     }
 
