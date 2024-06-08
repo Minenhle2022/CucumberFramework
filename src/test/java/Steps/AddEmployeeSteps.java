@@ -81,6 +81,8 @@ public class AddEmployeeSteps extends CommonMethods {
             String middleNameValue = employee.get("middlename");
             String LastNameValue = employee.get("lastname");
 
+
+
             sendText(firstNameValue,addEmployeePage.firstNameLoc) ;
             sendText(middleNameValue,addEmployeePage.middleNameLoc);
             sendText(LastNameValue,addEmployeePage.lastNameLoc);

@@ -37,6 +37,8 @@ public class LoginSteps extends CommonMethods {
         loginPage.loginButton.click();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
+         //System.out.println(10/0);
+
     }
     @Then("user is successfully logged in")
     public void user_is_successfully_logged_in() {

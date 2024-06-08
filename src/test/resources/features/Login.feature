@@ -8,7 +8,7 @@ Feature: Login related scenarios
     Then user is successfully logged in
 
 
-  @featurefile @smoke @regression
+  @featurefile @smoke @regression @failed
   Scenario: Valid admin login using feature file
     When user enters "admin" value and "Hum@nhrm123" value
     And user clicks on login button

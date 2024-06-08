@@ -17,6 +17,7 @@ public class Hooks extends CommonMethods {
     //post condition
     @After
     public void end(Scenario scenario) {
+        byte[] pic = new byte[0];
 
         //getName is the
         if (scenario.isFailed()) {
@@ -24,6 +25,9 @@ public class Hooks extends CommonMethods {
         } else {
             takeScreenshot("passed/" + scenario.getName());
     }
+
+        //this will attach my screenshotto my report
+        scenario.attach(pic,"image/png", scenario.getName());
         closeBrowser();
     }
 
