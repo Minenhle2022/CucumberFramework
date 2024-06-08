@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         //here in glue,
         glue = "Steps",
         dryRun = false,
-        tags = "@failed",
+        tags = "@featurefile",
         //pretty keywords prints all steps in console which we execute
         //to generate the report, I need to mention type of the report and location
         plugin = {"pretty", "html:target/cucumber.html","rerun:target/failed.txt","json:target/cucumber.json"}
